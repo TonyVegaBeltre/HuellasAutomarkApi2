@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36127.28
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HuellasAutomarkAPI", "HuellasAutomarkAPI.csproj", "{F9D33F3E-A693-4560-AF86-DD4B39CA4514}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9AB45D1A-0D0A-4B8D-8987-09470EE1601D} = {9AB45D1A-0D0A-4B8D-8987-09470EE1601D}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HuellasAutomarkAPI.Application", "..\HuellasAutomarkAPI.Application\HuellasAutomarkAPI.Application.csproj", "{EA57BDAB-1C79-4E76-9FF1-7A1069D44B94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HuellasAutomarkAPI.Infrastructure", "..\HuellasAutomarkAPI.Infrastructure\HuellasAutomarkAPI.Infrastructure.csproj", "{9AB45D1A-0D0A-4B8D-8987-09470EE1601D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EA57BDAB-1C79-4E76-9FF1-7A1069D44B94} = {EA57BDAB-1C79-4E76-9FF1-7A1069D44B94}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HuellasAutomarkAPI.Domain", "..\HuellasAutomarkAPI.Domain\HuellasAutomarkAPI.Domain.csproj", "{98E73363-D189-5512-B254-A7A79548E848}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9D33F3E-A693-4560-AF86-DD4B39CA4514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9D33F3E-A693-4560-AF86-DD4B39CA4514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9D33F3E-A693-4560-AF86-DD4B39CA4514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9D33F3E-A693-4560-AF86-DD4B39CA4514}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA57BDAB-1C79-4E76-9FF1-7A1069D44B94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA57BDAB-1C79-4E76-9FF1-7A1069D44B94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA57BDAB-1C79-4E76-9FF1-7A1069D44B94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA57BDAB-1C79-4E76-9FF1-7A1069D44B94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AB45D1A-0D0A-4B8D-8987-09470EE1601D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AB45D1A-0D0A-4B8D-8987-09470EE1601D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AB45D1A-0D0A-4B8D-8987-09470EE1601D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AB45D1A-0D0A-4B8D-8987-09470EE1601D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98E73363-D189-5512-B254-A7A79548E848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98E73363-D189-5512-B254-A7A79548E848}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98E73363-D189-5512-B254-A7A79548E848}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98E73363-D189-5512-B254-A7A79548E848}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D4A80F17-C84B-41B5-81C8-162025A9C219}
+	EndGlobalSection
+EndGlobal

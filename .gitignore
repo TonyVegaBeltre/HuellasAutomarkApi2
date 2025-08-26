@@ -1,0 +1,57 @@
+# Compilación
+bin/
+obj/
+[Bb]uild/
+[Bb]uilds/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Archivos temporales
+*.log
+*.tlog
+*.tmp
+*.temp
+
+# Archivos de configuración local
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+# Archivos de backup
+*.bak
+*.backup
+*.swp
+
+# Cache
+*.pidb
+*.svclog
+*.cache
+*.dbmdl
+
+# Publicaciones
+*.publishsettings
+publish/
+PublishProfiles/
+
+# Resharper / Rider
+_ReSharper*/
+*.DotSettings.user
+.idea/
+
+# Node.js (si usas frontend dentro del repo)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+#git
+.github

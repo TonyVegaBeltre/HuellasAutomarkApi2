@@ -1,0 +1,14 @@
+﻿using HuellasAutomarkAPI.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HuellasAutomarkAPI.Application.Interfaces
+{
+    public interface IDashboard
+    {
+        public Task<Dashboard> GetDashboardAsync();
+    }
+}

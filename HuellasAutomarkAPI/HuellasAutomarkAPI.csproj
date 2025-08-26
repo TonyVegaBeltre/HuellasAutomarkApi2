@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<DisableImplicitStaticWebAssets>true</DisableImplicitStaticWebAssets>
+	<OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.8" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HuellasAutomarkAPI.Application\HuellasAutomarkAPI.Application.csproj" />
+    <ProjectReference Include="..\HuellasAutomarkAPI.Infrastructure\HuellasAutomarkAPI.Infrastructure.csproj" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <Reference Include="HuellasAutomarkAPI.Domain">
+      <HintPath>..\HuellasAutomarkAPI.Domain\bin\Debug\net9.0\HuellasAutomarkAPI.Domain.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
