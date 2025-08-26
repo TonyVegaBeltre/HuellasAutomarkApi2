@@ -40,11 +40,17 @@ namespace HuellasAutomarkAPI.Controllers
             var response = await _repository.UpdateAsync(entity);
             return ApiResponse<object>.SuccessResponse(response).ToResult();
         }
-        [HttpDelete, Route("GetById/{id}")]
+        [HttpDelete, Route("Remove/{id}")]
 
-        public virtual async Task<IResult> DeleteAsync(int id)
+        public virtual async Task<IResult> RemoveAsync(int id)
         {
-            var response = await _repository.DeleteAsync(id);
+            var response = await _repository.RemoveAsync(id);
+            return ApiResponse<object>.SuccessResponse(response).ToResult();
+        }
+        [HttpGet, Route("GetAllActiveEntitiesAsync")]
+        public virtual async Task<IResult> GetAllActiveEntitiesAsync()
+        {
+            var response = await _repository.GetAllActiveEntitiesAsync(_repository.Query());
             return ApiResponse<object>.SuccessResponse(response).ToResult();
         }
     }

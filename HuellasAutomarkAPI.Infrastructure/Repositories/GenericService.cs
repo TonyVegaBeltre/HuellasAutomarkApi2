@@ -1,9 +1,10 @@
-﻿using HuellasAutomarkAPI.Infrastructure.Persistence;
-using HuellasAutomarkAPI.Application.Interfaces;
+﻿using HuellasAutomarkAPI.Application.Interfaces;
+using HuellasAutomarkAPI.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,7 +27,7 @@ namespace HuellasAutomarkAPI.Application.Services
             return entity;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> RemoveAsync(int id)
         {
             var entity = await _dbSet.FindAsync(id);
             if (entity == null) return false;
@@ -53,5 +54,19 @@ namespace HuellasAutomarkAPI.Application.Services
             return entity;
         }
         public IQueryable<T> Query() => _context.Set<T>().AsQueryable();
+
+        public async Task<IEnumerable<T>> GetAllActiveEntitiesAsync<T>(IQueryable<T> queryable) 
+        {
+            var parameter = Expression.Parameter(typeof(T), "e");
+
+            // Buscar la propiedad "IsActive"
+            var property = Expression.Property(parameter, "IsActive");
+
+            // Expresión e => e.IsActive
+            var lambda = Expression.Lambda<Func<T, bool>>(property, parameter);
+
+            return await queryable.Where(lambda).ToListAsync();
+        }
+
     }
 }

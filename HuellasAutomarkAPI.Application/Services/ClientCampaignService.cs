@@ -85,7 +85,7 @@ namespace HuellasAutomarkAPI.Application.Services
         {
             try
             {
-                var response = await _clientCampaign.DeleteAsync(IdClientCampaign);
+                var response = await _clientCampaign.RemoveAsync(IdClientCampaign);
                 return true;
             }
             catch (Exception ex)

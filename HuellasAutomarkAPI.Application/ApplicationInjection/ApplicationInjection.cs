@@ -15,7 +15,7 @@ namespace HuellasAutomarkAPI.Application.ApplicationInjection
         {
 
             // Servicios específicos
-            //services.AddScoped<IClient/*, ClientService*/>();
+            services.AddScoped<IClient, ClientService>();
             //services.AddScoped<ICampaign/*, CampaignService*/>();
             services.AddScoped<IClientCampaign, ClientCampaignService>();
             services.AddScoped<IClientCampaign, ClientCampaignService>();
