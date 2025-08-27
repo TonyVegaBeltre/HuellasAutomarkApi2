@@ -1,15 +1,11 @@
-﻿using HuellasAutomarkAPI.Infrastructure.MailClient;
+﻿using HuellasAutomarkAPI.Application.Interfaces.Mail;
+using HuellasAutomarkAPI.Infrastructure.MailClient;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
 
 namespace HuellasAutomarkAPI.Infrastructure.Mail
 {
-    public interface IMail
-    {
-        Task SendEmailAsync(string to, string subject, string body, bool isHtml = true);
-    }
-
 
     public class MailService : IMail
     {

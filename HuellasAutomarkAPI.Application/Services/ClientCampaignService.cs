@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HuellasAutomarkAPI.Application.Interfaces.Mail;
 
 namespace HuellasAutomarkAPI.Application.Services
 {
@@ -16,12 +17,16 @@ namespace HuellasAutomarkAPI.Application.Services
         private readonly IGeneric<Campaign> _campaign;
         private readonly IGeneric<State> _state;
         private readonly IGeneric<ClientCampaign> _clientCampaign;
-        public ClientCampaignService(IGeneric<Client> client, IGeneric<Campaign> campaign, IGeneric<State> state, IGeneric<ClientCampaign> clientCampaign) 
+        private readonly IMail _mail;
+        public ClientCampaignService(IGeneric<Client> client, IGeneric<Campaign> campaign, 
+                                       IGeneric<State> state, IGeneric<ClientCampaign> clientCampaign,
+                                       IMail mail) 
         { 
             _client = client;
             _campaign = campaign;
             _state = state;
             _clientCampaign = clientCampaign;
+            _mail = mail;
         }
 
         public async Task<bool> AddClientCampigns(int clientId, int campaignId,int stateId, DateTime SendDate, string observations)
@@ -33,13 +38,26 @@ namespace HuellasAutomarkAPI.Application.Services
                 {
                     ClientId = clientId,
                     CampaignId = campaignId,
-                    StateId = stateId, 
+                    StateId = stateId,
                     SendDate = SendDate,
                     Observations = observations,
                     IsActive = true
                 };
-                await _clientCampaign.AddAsync(clientCampaign);
+                var isAdded = await _clientCampaign.AddAsync(clientCampaign);
+                //var isAdded = true;
+                if (isAdded != null)
+                {
+                    var client = await _client.GetByIdAsync(clientId);
+
+                    await _mail.SendEmailAsync(
+                    client.Email,
+                    "Nueva campaña registrada",
+                    $"Se ha registrado la campaña {campaignId} para el cliente {clientId}.");
+                }
+                else { throw new Exception("No se pudo agregar el cliente a la campaña."); }
+
                 return true;
+
             }
             catch (Exception ex)
             {

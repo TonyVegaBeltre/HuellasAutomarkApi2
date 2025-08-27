@@ -1,5 +1,6 @@
 using HuellasAutomarkAPI.Application.ApplicationInjection;
 using HuellasAutomarkAPI.Application.Interfaces;
+using HuellasAutomarkAPI.Application.Interfaces.Mail;
 using HuellasAutomarkAPI.Application.Services;
 using HuellasAutomarkAPI.Infrastructure.Mail;
 using HuellasAutomarkAPI.Infrastructure.MailClient;
