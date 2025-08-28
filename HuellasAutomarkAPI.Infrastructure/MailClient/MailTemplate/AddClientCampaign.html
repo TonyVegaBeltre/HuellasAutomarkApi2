@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .header {
+            text-align: center;
+        }
+
+            .header img {
+                max-width: 120px;
+                margin-bottom: 20px;
+            }
+
+        .title {
+            color: #2c3e50;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .info {
+            margin: 15px 0;
+        }
+
+        .footer {
+            font-size: 12px;
+            color: #777;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="cid:companyLogo" alt="Logo de la Empresa">
+        </div>
+        <p class="title">Hola {{ClientName}},</p>
+        <p>Se ha registrado una nueva campaña con los siguientes detalles:</p>
+        <div class="info">
+            <p><b>Campaña:</b> {{CampaignName}}</p>
+            <p><b>Fecha Promocionada:</b> {{SendDate}}</p>
+            <p><b>Observaciones:</b> {{Observations}}</p>
+        </div>
+        <p>Gracias por confiar en nosotros.</p>
+        <div class="footer">© 2025 Huellas Automark. Todos los derechos reservados.</div>
+    </div>
+</body>
+</html>
+<!--<!DOCTYPE html>
+<html lang='es'>
+<head>
+    <meta charset='UTF-8'>
+    <style>
+        body {{
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }}
+        .container {{
+            max-width: 600px;
+            background: #fff;
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+        }}
+        .header {{
+            text-align: center;
+            margin-bottom: 20px;
+        }}
+        .header img {{
+            max-height: 80px;
+        }}
+        .title {{
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 10px;
+        }}
+        .details {{
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }}
+        .footer {{
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            margin-top: 30px;
+        }}
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <div class='header'>
+            <img src='../wwwroot/images/HuellasLogo.jpeg' alt='Logo Empresa' />
+        </div>
+        <div class='title'>📢 Nueva Campaña Registrada</div>
+        <div class='details'>
+            <p>Hola <b>{ClientName}</b>,</p>
+            <p>Queremos informarte que has sido agregado a la campaña:</p>
+            <ul>
+                <li><b>Campaña:</b> {CampaignName}</li>
+                <li><b>Fecha Promocionada:</b> {SendDate}</li>
+                <li><b>Observaciones:</b> {Observations}</li>
+            </ul>
+            <p>¡Gracias por ser parte de nuestra comunidad!</p>
+        </div>
+        <div class='footer'>
+            © 2025 Huellas Automark. Todos los derechos reservados.
+        </div>
+    </div>
+</body>
+</html>-->

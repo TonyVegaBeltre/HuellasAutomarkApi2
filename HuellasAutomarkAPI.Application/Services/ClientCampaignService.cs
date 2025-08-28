@@ -34,25 +34,31 @@ namespace HuellasAutomarkAPI.Application.Services
             try
             {
 
-                var clientCampaign = new ClientCampaign
-                {
-                    ClientId = clientId,
-                    CampaignId = campaignId,
-                    StateId = stateId,
-                    SendDate = SendDate,
-                    Observations = observations,
-                    IsActive = true
-                };
-                var isAdded = await _clientCampaign.AddAsync(clientCampaign);
-                //var isAdded = true;
+                //var clientCampaign = new ClientCampaign
+                //{
+                //    ClientId = clientId,
+                //    CampaignId = campaignId,
+                //    StateId = stateId,
+                //    SendDate = SendDate,
+                //    Observations = observations,
+                //    IsActive = true
+                //};
+                //var isAdded = await _clientCampaign.AddAsync(clientCampaign);
+                var isAdded = true;
                 if (isAdded != null)
                 {
                     var client = await _client.GetByIdAsync(clientId);
+                    var campaign = await _campaign.GetByIdAsync(campaignId);
 
-                    await _mail.SendEmailAsync(
-                    client.Email,
-                    "Nueva campaña registrada",
-                    $"Se ha registrado la campaña {campaignId} para el cliente {clientId}.");
+                    await _mail.SendEmailAsync(new MailMessageDto
+                    {
+                        ToEmail = client.Email,
+                        Subject = "Nueva Campaña Asignada!",
+                        ClientName = client.Name + " " + client.LastName,
+                        CampaignName = campaign.Title,
+                        SendDate = SendDate,
+                        Observations = observations
+                    });
                 }
                 else { throw new Exception("No se pudo agregar el cliente a la campaña."); }
 

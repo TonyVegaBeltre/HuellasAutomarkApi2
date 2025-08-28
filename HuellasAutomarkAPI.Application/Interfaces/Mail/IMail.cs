@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HuellasAutomarkAPI.Application.Dto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,10 @@ namespace HuellasAutomarkAPI.Application.Interfaces.Mail
 {
     public interface IMail
     {
-        Task SendEmailAsync(string to, string subject, string body, bool isHtml = true);
+        //Task SendEmailAsync(string to, string subject, string body, bool isHtml = true);
+        Task SendEmailAsync(MailMessageDto message);
+
+
 
     }
 }

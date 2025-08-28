@@ -1,4 +1,6 @@
-﻿using HuellasAutomarkAPI.Application.Interfaces.Mail;
+﻿using HuellasAutomarkAPI.Application.Dto;
+using HuellasAutomarkAPI.Application.Interfaces.Mail;
+using HuellasAutomarkAPI.Domain.Entities;
 using HuellasAutomarkAPI.Infrastructure.MailClient;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
@@ -15,18 +17,31 @@ namespace HuellasAutomarkAPI.Infrastructure.Mail
             _smtpSettings = smtpSettings.Value;
         }
 
-        public async Task SendEmailAsync(string to, string subject, string body, bool isHtml = true)
+        public async Task SendEmailAsync(MailMessageDto message)
         {
             var email = new MimeMessage();
             email.From.Add(new MailboxAddress(_smtpSettings.SenderName, _smtpSettings.SenderEmail));
-            email.To.Add(MailboxAddress.Parse(to));
-            email.Subject = subject;
+            email.To.Add(MailboxAddress.Parse(message.ToEmail));
+            email.Subject = message.Subject;
 
+            //var templatePath = Path.Combine("C:\\Users\\antho\\source\\repos\\HuellasAutomarkApi2\\HuellasAutomarkAPI.Infrastructure\\", "MailClient", "MailTemplate", "AddClientCampaign.html");
+            var templatePath = message.HtmlPath;
+
+            var htmlTemplate = await File.ReadAllTextAsync(templatePath);
+
+            string body = htmlTemplate
+            .Replace("{{ClientName}}", $"{message.ClientName}")
+            .Replace("{{CampaignName}}", message.CampaignName)
+            .Replace("{{SendDate}}", message.SendDate.ToString("dd/MM/yyyy"))
+            .Replace("{{Observations}}", message.Observations);
             var builder = new BodyBuilder
             {
-                HtmlBody = isHtml ? body : null,
-                TextBody = !isHtml ? body : null
+                HtmlBody = body
+
+
             };
+            var logoPath = builder.LinkedResources.Add(message.LogoPath);
+            logoPath.ContentId = ("companylogo");
 
             email.Body = builder.ToMessageBody();
 
@@ -35,10 +50,10 @@ namespace HuellasAutomarkAPI.Infrastructure.Mail
             await smtp.AuthenticateAsync(_smtpSettings.Username, _smtpSettings.Password);
             await smtp.SendAsync(email);
             await smtp.DisconnectAsync(true);
-
-
         }
+
     }
+
     
 }
 
