@@ -17,11 +17,11 @@ namespace HuellasAutomarkAPI.Domain.Entities
         [Column("IdGenero")]
         public int GenderId { get; set; }
         [ForeignKey(nameof(GenderId))]
-        public virtual Gender Gender { get; set; } = null!;
+        public virtual Gender Gender { get; set; } 
         [Column("IdCiudad")]
         public int CityId { get; set; }
         [ForeignKey(nameof(CityId))]
-        public virtual City City { get; set; } = null!;
+        public virtual City City { get; set; } 
 
         [Column("Nombre"), MaxLength(100)]
         public string Name { get; set; } = string.Empty;

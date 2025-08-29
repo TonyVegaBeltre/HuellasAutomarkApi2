@@ -30,10 +30,10 @@ namespace HuellasAutomarkAPI.Infrastructure.Mail
             var htmlTemplate = await File.ReadAllTextAsync(templatePath);
 
             string body = htmlTemplate
-            .Replace("{{ClientName}}", $"{message.ClientName}")
-            .Replace("{{CampaignName}}", message.CampaignName)
-            .Replace("{{SendDate}}", message.SendDate.ToString("dd/MM/yyyy"))
-            .Replace("{{Observations}}", message.Observations);
+                .Replace("{{ClientName}}", $"{message.ClientName}")
+                .Replace("{{CampaignName}}", message.CampaignName)
+                .Replace("{{SendDate}}", message.SendDate.ToString("dd/MM/yyyy"))
+                .Replace("{{Observations}}", message.Observations);
             var builder = new BodyBuilder
             {
                 HtmlBody = body

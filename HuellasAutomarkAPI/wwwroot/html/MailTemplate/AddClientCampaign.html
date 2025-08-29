@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .header {
+            text-align: center;
+        }
+
+            .header img {
+                max-width: 120px;
+                margin-bottom: 20px;
+            }
+
+        .title {
+            color: #2c3e50;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .info {
+            margin: 15px 0;
+        }
+
+        .footer {
+            font-size: 11px;
+            text-align: left;
+            margin-top: 10px;
+            line-height: 1.1;
+        }
+        .logo {
+            height: auto;
+            width: 100px;
+            margin: 0 10px 10px auto;
+        }
+        .copyright {
+            font-size: 12px;
+            color: #777;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .social-links {
+            margin-top: 10px;
+        }
+        .social-links a{
+
+            display: inline-block;
+            margin: 0 4px;
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 4px;
+            color: #fff;
+            background-color: #3b5998;
+            transition: all 0.3s ease;
+        }
+        .social-links a.instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+
+        .social-links a.twitter {
+            background-color: #1da1f2;
+        }
+
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="title">Hola, {{ClientName}},</p>
+        <p>Se ha registrado una nueva campaña con los siguientes detalles:</p>
+        <div class="info">
+            <p><b>Campaña:</b> {{CampaignName}}</p>
+            <p><b>Fecha Promocionada:</b> {{SendDate}}</p>
+            <p><b>Observaciones:</b> {{Observations}}</p>
+        </div>
+        <p>Gracias por confiar en nosotros.</p>
+        <br />
+        <br />
+        <hr />
+        <img class="logo" src="cid:companylogo" alt="Logo de la Empresa">
+        <div class="footer">
+            <p><b>Administración de Huellas Automark</b></p>
+            <p>Tel: 809-855-1022</p>
+            <p>@HuellasAutomarkOficial</p>
+            <div class="social-links">
+                <a href="#" class="facebook">Facebook</a>
+                <a href="#" class="instagram">Instagram</a>
+                <a href="#" class="twitter">Twitter</a>
+            </div>
+            <div class="copyright">© 2025 Huellas Automark. Todos los derechos reservados.</div>
+        </div>
+    </div>
+</body>
+</html>

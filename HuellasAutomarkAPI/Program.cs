@@ -6,6 +6,8 @@ using HuellasAutomarkAPI.Infrastructure.Mail;
 using HuellasAutomarkAPI.Infrastructure.MailClient;
 using HuellasAutomarkAPI.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using HuellasAutomarkAPI.Application.MappingProfile;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 // DbContext Configuration
@@ -21,6 +23,7 @@ builder.Services.AddScoped(typeof(IGeneric<>), typeof(GenericService<>));
 builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
 builder.Services.AddTransient<IMail, MailService>();
 
+builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>());
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddInfrastructureServices();

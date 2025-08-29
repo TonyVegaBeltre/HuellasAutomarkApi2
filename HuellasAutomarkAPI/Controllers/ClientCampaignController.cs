@@ -1,6 +1,7 @@
-﻿using HuellasAutomarkAPI.Application.Services;
-
+﻿using AutoMapper;
+using HuellasAutomarkAPI.Application.Dto;
 using HuellasAutomarkAPI.Application.Interfaces;
+using HuellasAutomarkAPI.Application.Services;
 using HuellasAutomarkAPI.Domain.Entities;
 using HuellasAutomarkAPI.Domain.Entities.ApiResponse;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,10 @@ namespace HuellasAutomarkAPI.Controllers
 
     [ApiController]
     [Route("api/[controller]")]
-    public class ClientCampaignController : GenericController<ClientCampaign>
+    public class ClientCampaignController : GenericController<ClientCampaign,CreateClientCampaignDto>
     {
         private readonly IClientCampaign _clientCampaign;
-        public ClientCampaignController(IGeneric<ClientCampaign> repository, IClientCampaign clientCampaign) : base(repository)
+        public ClientCampaignController(IGeneric<ClientCampaign> repository, IClientCampaign clientCampaign, IMapper mapper) : base(repository,mapper)
         {
               _clientCampaign = clientCampaign;
         }

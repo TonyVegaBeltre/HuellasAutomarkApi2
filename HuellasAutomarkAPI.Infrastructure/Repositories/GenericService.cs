@@ -20,11 +20,11 @@ namespace HuellasAutomarkAPI.Application.Services
             _context = context;
             _dbSet = _context.Set<T>();
         }
-        public async Task<T> AddAsync(T entity)
+        public async Task<bool> AddAsync(T entity)
         {
             await _dbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
-            return entity;
+            return true;
         }
 
         public async Task<bool> RemoveAsync(int id)
@@ -47,11 +47,11 @@ namespace HuellasAutomarkAPI.Application.Services
             return await _dbSet.FindAsync(id);
         }
 
-        public async Task<T> UpdateAsync(T entity)
+        public async Task<bool> UpdateAsync(T entity)
         {
             _dbSet.Update(entity);
             await _context.SaveChangesAsync();
-            return entity;
+            return true;
         }
         public IQueryable<T> Query() => _context.Set<T>().AsQueryable();
 

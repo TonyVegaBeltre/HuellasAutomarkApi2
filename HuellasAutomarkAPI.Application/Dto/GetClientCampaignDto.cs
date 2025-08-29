@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace HuellasAutomarkAPI.Application.Dto
 {
-    public class MailMessageDto
+    public class GetClientCampaignDto
     {
-        public string ToEmail { get; set; } = string.Empty;
-        public string Subject { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public int ClientId { get; set; }
         public string ClientName { get; set; } = string.Empty;
-        public string CampaignName { get; set; } = string.Empty;
-        public DateTime SendDate { get; set; } 
-        public string Observations { get; set; } = string.Empty;
-        public string HtmlPath { get; set; }= string.Empty;
-        public string LogoPath { get; set; } = string.Empty;
 
+        public int CampaignId { get; set; } 
+        public string CampaignName { get; set; } = string.Empty;
+        public int StateId { get; set; }
+        public string StateName { get; set; } = string.Empty;
+        public DateTime? SendDate { get; set; }
+        public string Observations { get; set; } = string.Empty;
+        public bool IsActive { get; set; }
     }
 }
