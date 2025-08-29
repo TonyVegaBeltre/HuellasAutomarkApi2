@@ -34,30 +34,33 @@ namespace HuellasAutomarkAPI.Application.Services
             try
             {
 
-                //var clientCampaign = new ClientCampaign
-                //{
-                //    ClientId = clientId,
-                //    CampaignId = campaignId,
-                //    StateId = stateId,
-                //    SendDate = SendDate,
-                //    Observations = observations,
-                //    IsActive = true
-                //};
-                //var isAdded = await _clientCampaign.AddAsync(clientCampaign);
-                var isAdded = true;
-                if (isAdded != null)
+                var clientCampaign = new ClientCampaign
+                {
+                    ClientId = clientId,
+                    CampaignId = campaignId,
+                    StateId = stateId,
+                    SendDate = SendDate,
+                    Observations = observations,
+                    IsActive = true
+                };
+                var isAdded = await _clientCampaign.AddAsync(clientCampaign);
+
+                if (isAdded)
                 {
                     var client = await _client.GetByIdAsync(clientId);
                     var campaign = await _campaign.GetByIdAsync(campaignId);
-
+                    var htmlPath = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName + "\\wwwroot\\html\\MailTemplate\\AddClientCampaign.html";
+                    var logoPath = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName + "\\wwwroot\\images\\HuellasLogo.jpeg";
                     await _mail.SendEmailAsync(new MailMessageDto
                     {
                         ToEmail = client.Email,
-                        Subject = "Nueva Campaña Asignada!",
+                        Subject = "¡Nueva Campaña Asignada!",
                         ClientName = client.Name + " " + client.LastName,
                         CampaignName = campaign.Title,
                         SendDate = SendDate,
-                        Observations = observations
+                        Observations = observations,
+                        HtmlPath = htmlPath,
+                        LogoPath = logoPath
                     });
                 }
                 else { throw new Exception("No se pudo agregar el cliente a la campaña."); }
@@ -73,7 +76,7 @@ namespace HuellasAutomarkAPI.Application.Services
 
         }
 
-        public async Task<List<IEnumerable<ClientCampaignDto>>> GetClientByCampaign(int clientId)
+        public async Task<List<IEnumerable<GetClientCampaignDto>>> GetClientByCampaign(int clientId)
         {
             try
             {
@@ -82,7 +85,7 @@ namespace HuellasAutomarkAPI.Application.Services
                                      join cl in await _client.GetAllAsync() on clc.ClientId equals cl.Id
                                      join st in await _state.GetAllAsync() on clc.StateId equals st.Id
                                      where cl.Id == clientId && clc.IsActive == true
-                                     select new ClientCampaignDto
+                                     select new GetClientCampaignDto
                                      {
                                          Id = clc.Id,
                                          ClientId = clientId,

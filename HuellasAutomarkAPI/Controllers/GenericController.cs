@@ -2,15 +2,18 @@
 using HuellasAutomarkAPI.Application.Interfaces;
 using HuellasAutomarkAPI.Domain.Entities.ApiResponse;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 
 namespace HuellasAutomarkAPI.Controllers
 {
-    public class GenericController<T> : ControllerBase where T : class
+    public class GenericController<T, TDto> : ControllerBase where T : class
     {
         readonly IGeneric<T> _repository;
-        public GenericController(IGeneric<T> repository)
+        readonly IMapper _mapper;
+        public GenericController(IGeneric<T> repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
         [HttpGet,Route("GetAll")]
         public virtual async Task<IResult> GetAllsAsync()
@@ -28,15 +31,20 @@ namespace HuellasAutomarkAPI.Controllers
 
         [HttpPost, Route("Add")]
 
-        public virtual async Task<IResult> AddProductAsync([FromBody] T entity)
+        public virtual async Task<IResult> AddAsync([FromBody] TDto dto)
         {
+
+            //var response =/* await _repository.AddAsync(entity);*/
+            var entity = _mapper.Map<T>(dto);
             var response = await _repository.AddAsync(entity);
             return ApiResponse<object>.SuccessResponse(response).ToResult();
         }
         [HttpPut, Route("Modify/{id}")]
 
-        public virtual async Task<IResult> UpdateAsync([FromBody] T entity)
+        public virtual async Task<IResult> UpdateAsync([FromBody] TDto dto)
         {
+
+            var entity = _mapper.Map<T>(dto);
             var response = await _repository.UpdateAsync(entity);
             return ApiResponse<object>.SuccessResponse(response).ToResult();
         }

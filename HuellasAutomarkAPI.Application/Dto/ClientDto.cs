@@ -9,9 +9,13 @@ namespace HuellasAutomarkAPI.Application.Dto
     public class ClientDto
     {
         public int Id { get; set; }
-        public string FullName { get; set; } = string.Empty;
+        public int GenderId { get; set; }
+        public int CityId { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
-        public string Phone { get; set; } = string.Empty;
+        public string? PhoneNumber { get; set; }
+        public DateTime? BirthDate { get; set; }
         public bool IsActive { get; set; }
     }
 }
