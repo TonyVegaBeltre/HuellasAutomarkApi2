@@ -1,6 +1,9 @@
-using HuellasAutomarkAPI.Application.Services;
-using HuellasAutomarkAPI.Application.Interfaces;
 using HuellasAutomarkAPI.Application.ApplicationInjection;
+using HuellasAutomarkAPI.Application.Interfaces;
+using HuellasAutomarkAPI.Application.Interfaces.Mail;
+using HuellasAutomarkAPI.Application.Services;
+using HuellasAutomarkAPI.Infrastructure.Mail;
+using HuellasAutomarkAPI.Infrastructure.MailClient;
 using HuellasAutomarkAPI.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +17,10 @@ builder.Services.AddControllers().AddJsonOptions(options =>
         options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddScoped(typeof(IGeneric<>), typeof(GenericService<>));
+
+builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
+builder.Services.AddTransient<IMail, MailService>();
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddInfrastructureServices();
