@@ -75,7 +75,55 @@ namespace HuellasAutomarkAPI.Application.Services
             }
 
         }
+        public async Task<bool> AddClientCampaignsBulk(List<int> clientIds, int campaignId, int stateId, DateTime sendDate, string observations)
+        {
+            try
+            {
 
+                var clientCampaigns = clientIds.Select(clientId => new ClientCampaign
+                {
+                    ClientId = clientId,
+                    CampaignId = campaignId,
+                    StateId = stateId,
+                    SendDate = sendDate,
+                    Observations = observations,
+                    IsActive = true
+                }).ToList();
+                var isAdded = await _clientCampaign.BulkInsert(clientCampaigns);
+                var htmlPath = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName + "\\wwwroot\\html\\MailTemplate\\AddClientCampaign.html";
+                var logoPath = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName + "\\wwwroot\\images\\HuellasLogo.jpeg";
+                if (isAdded)
+                {
+                    foreach(var clientId in clientIds)
+                        { 
+                        var client = await _client.GetByIdAsync(clientId);
+                        var campaign = await _campaign.GetByIdAsync(campaignId);
+
+                        await _mail.SendEmailAsync(new MailMessageDto
+                        {
+                            ToEmail = client.Email,
+                            Subject = "¡Nueva Campaña Asignada!",
+                            ClientName = client.Name + " " + client.LastName,
+                            CampaignName = campaign.Title,
+                            SendDate = sendDate,
+                            Observations = observations,
+                            HtmlPath = htmlPath,
+                            LogoPath = logoPath
+                        });
+                        }
+                }
+                else { throw new Exception("No se pudo agregar el cliente a la campaña."); }
+
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ha ocurrido un error al agregar el cliente a la campaña: " + ex.Message);
+
+            }
+
+        }
         public async Task<List<IEnumerable<GetClientCampaignDto>>> GetClientByCampaign(int clientId)
         {
             try

@@ -31,6 +31,12 @@ namespace HuellasAutomarkAPI.Controllers
             var clientCampaignToAdd = await _clientCampaign.AddClientCampigns(clientId, campaignId,stateId, SendDate, observations);
             return ApiResponse<object>.SuccessResponse(clientCampaignToAdd).ToResult();
         }
+        [HttpPost, Route("AddClientCampaignsBulk/Clients")]
+        public virtual async Task<IResult> AddClientCampignsBulk(List<int> clientIds, int campaignId, int stateId, DateTime SendDate, string observations)
+        {
+            var clientCampaignToAdd = await _clientCampaign.AddClientCampaignsBulk(clientIds, campaignId, stateId, SendDate, observations);
+            return ApiResponse<object>.SuccessResponse(clientCampaignToAdd).ToResult();
+        }
 
         [HttpDelete, Route("RemoveClientFromCampaign/{IdClientCampaign}/Clients")]
         public virtual async Task<IResult> RemoveClientFromCampaign(int IdClientCampaign)

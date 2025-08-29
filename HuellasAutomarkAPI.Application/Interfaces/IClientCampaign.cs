@@ -13,5 +13,7 @@ namespace HuellasAutomarkAPI.Application.Interfaces
         public Task<List<IEnumerable<GetClientCampaignDto>>> GetClientByCampaign(int clientId);
         public Task<bool> AddClientCampigns(int clientId, int campaignId,int stateId, DateTime SendDate, string observations);
         public Task<bool> RemoveClientFromCampaign(int IdClientCampaign);
+        public Task<bool> AddClientCampaignsBulk(List<int> clientIds, int campaignId, int stateId, DateTime sendDate, string observations);
+
     }
 }

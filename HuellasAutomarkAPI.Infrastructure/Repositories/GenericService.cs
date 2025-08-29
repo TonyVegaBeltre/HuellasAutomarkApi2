@@ -55,6 +55,13 @@ namespace HuellasAutomarkAPI.Application.Services
         }
         public IQueryable<T> Query() => _context.Set<T>().AsQueryable();
 
+        public async Task<bool> BulkInsert(IEnumerable<T> entity)
+        {
+            await _dbSet.AddRangeAsync(entity);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
         public async Task<IEnumerable<T>> GetAllActiveEntitiesAsync<T>(IQueryable<T> queryable) 
         {
             var parameter = Expression.Parameter(typeof(T), "e");

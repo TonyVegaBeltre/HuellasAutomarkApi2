@@ -14,6 +14,7 @@ namespace HuellasAutomarkAPI.Application.Interfaces
         Task<bool> UpdateAsync(T entity);
         Task<bool> RemoveAsync(int id);
         IQueryable<T> Query();
+        Task<bool> BulkInsert(IEnumerable<T> entities);
         Task<IEnumerable<T>> GetAllActiveEntitiesAsync<T>(IQueryable<T> queryable);
     }
 }
